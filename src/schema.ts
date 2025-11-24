@@ -32,6 +32,12 @@ export const createProductSchema = v.omit(
     ['id']
 )
 
+const nameSchema = v.pipe(
+  v.string('Поле обязательно для заполнения'),
+  v.trim(),
+  v.nonEmpty('Имя не может быть пустым'),
+  v.minLength(2)
+)
 
 // добавить схемы: 
 // - orderSchema (на основе типа Order из файла types.ts)
@@ -48,7 +54,6 @@ export const orderSchema = v.object({
   productId: idSchema,
   createdAt: v.pipe(
     v.union([v.number(), v.string()]),
-    v.transform(val => (typeof val === 'string' ? Date.parse(val) : val)),
     v.number(),
     v.minValue(0)
   )
