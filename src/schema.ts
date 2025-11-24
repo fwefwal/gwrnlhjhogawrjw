@@ -37,3 +37,28 @@ export const createProductSchema = v.omit(
 // - orderSchema (на основе типа Order из файла types.ts)
 // - createOrderSchema (на основе типа CreateOrder из файла types.ts)  
 
+export const order = v.object({
+  id: idcard,
+  firstName: v.pipe(
+    v.string(),
+    v.nonEmpty(),
+    v.minLength(2)
+  ),
+  lastName: v.pipe(
+    v.string(),
+    v.nonEmpty(),
+    v.minLength(2)
+  ),
+  delivery: v.union([
+    v.literal("pickup"),
+    v.literal("courier")
+  ]),
+  productId: idcard,
+  createdAt: v.pipe(
+    v.number(),
+    v.integer(),
+    v.minValue(0)
+  )
+})
+
+export const orders = v.omit(order, ["id", "createdAt"])
