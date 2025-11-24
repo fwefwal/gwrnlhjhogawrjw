@@ -38,7 +38,7 @@ export const createProductSchema = v.omit(
 // - createOrderSchema (на основе типа CreateOrder из файла types.ts)  
 
 export const order = v.object({
-  id: idcard,
+  id: idSchema,
   firstName: v.pipe(
     v.string()
   ),
@@ -48,7 +48,7 @@ export const order = v.object({
   delivery: v.union([
     v.literal("pickup"), v.literal("courier")
   ]),
-  productId: idcard,
+  productId: idSchema,
   createdAt: v.pipe(
     v.number()
   )
