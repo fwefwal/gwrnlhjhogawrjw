@@ -28,6 +28,5 @@ export type CreateProduct = v.InferOutput<typeof schema.createProductSchema>;
 // вывести типы Order и CreateOrder из схем
 // (удалив типы, указанные здесь сейчас)
 
-export type OrderFromSchema = v.InferOutput<typeof schema.order>;
-
-export type CreateOrderFromSchema = v.InferOutput<typeof schema.orders>;
+export type OrderFromSchema = v.InferOutput<typeof schema.orderSchema>;
+export type CreateOrderFromSchema = v.InferOutput<typeof schema.createOrderSchema>;
