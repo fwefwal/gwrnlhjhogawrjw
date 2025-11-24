@@ -40,16 +40,13 @@ export const createProductSchema = v.omit(
 export const order = v.object({
   id: idcard,
   firstName: v.pipe(
-    v.string(),
-    v.nonEmpty()
+    v.string()
   ),
   lastName: v.pipe(
-    v.string(),
-    v.nonEmpty()
+    v.string()
   ),
   delivery: v.union([
-    v.literal("pickup"),
-    v.literal("courier")
+    v.literal("pickup"), v.literal("courier")
   ]),
   productId: idcard,
   createdAt: v.pipe(
