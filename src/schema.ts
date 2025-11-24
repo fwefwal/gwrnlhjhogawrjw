@@ -39,19 +39,18 @@ export const createProductSchema = v.omit(
 
 export const orderSchema = v.object({
   id: idSchema,
-  firstName: v.pipe(
-    v.string()
-  ),
-  lastName: v.pipe(
-    v.string()
-  ),
+  firstName: nameSchema,
+  lastName: nameSchema,
   delivery: v.union([
     v.literal("pickup"),
     v.literal("courier")
   ]),
   productId: idSchema,
   createdAt: v.pipe(
-    v.number()
+    v.union([v.number(), v.string()]),
+    v.transform(val => (typeof val === 'string' ? Date.parse(val) : val)),
+    v.number(),
+    v.minValue(0)
   )
 })
 
